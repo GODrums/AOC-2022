@@ -6,22 +6,26 @@ import java.util.List;
 public class Main {
     public List<List<Integer>> readFile(String filename) throws IOException {
         File file = new File(filename);
-        BufferedReader br = new BufferedReader(new FileReader(file));
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String s;
+            List<List<Integer>> output = new ArrayList<>();
+            List<Integer> curr = new ArrayList<>();
 
-        String s;
-        List<List<Integer>> output = new ArrayList<>();
-        List<Integer> curr = new ArrayList<>();
-
-        while((s = br.readLine()) != null) {
-            if (s.isEmpty()) {
-                output.add(curr);
-                curr = new ArrayList<>();
-            } else {
-                curr.add(Integer.parseInt(s));
+            while((s = br.readLine()) != null) {
+                if (s.isEmpty()) {
+                    output.add(curr);
+                    curr = new ArrayList<>();
+                } else {
+                    curr.add(Integer.parseInt(s));
+                }
             }
+            output.add(curr);
+            return output;
+        } catch (NumberFormatException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
-        output.add(curr);
-        return output;
+        return null;
     }
 
     public Integer findMostCalories(List<List<Integer>> input) {
