@@ -7,7 +7,7 @@ class FileObject {
     name: string;
     fSize: number;
     children: FileObject[];
-    parent: FileObject | null = null;
+    parent: FileObject | null;
 
     constructor(name: string, fSize: number, children: FileObject[], parent: FileObject | null = null) {
         this.name = name;
@@ -17,8 +17,7 @@ class FileObject {
     }
 
     get size(): number {
-        const calcSize = this.fSize + this.children.reduce((acc, file) => acc + file.size, 0);
-        return calcSize;
+        return this.fSize + this.children.reduce((acc, file) => acc + file.size, 0);
     }
 
     addChildren(child: FileObject) {
