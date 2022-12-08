@@ -9,11 +9,7 @@ function handleInput(input: string): [string[][], string] {
     starting.split("\r\n").slice(0, -1).forEach(row => {
         let i = 0;
         while (i < row.length) {
-            if (row[i+1] != " ") {
-                stacks[i/4] += row[i+1];
-            } else {
-                stacks[i/4] += " ";
-            }
+            stacks[i/4] += row[i+1];
             i += 4;
         }
     });
