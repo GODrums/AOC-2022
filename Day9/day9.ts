@@ -56,7 +56,7 @@ function calculateLongRopes(input: string): number {
     const visited: Position[] = [];
     const posKnots = new Array(9).fill(null).map(() => new Position(0, 0));
     const posHead = new Position(0, 0);
-    input.split("\r\n").forEach((row, index) => {
+    input.split("\r\n").forEach(row => {
         const dir = row.split(" ")[0];
         const amount = parseInt(row.split(" ")[1]);
         for (let i = 0; i < amount; i++) {
